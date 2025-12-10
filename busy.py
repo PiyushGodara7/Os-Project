@@ -4,7 +4,6 @@ import os
 print(f"Busy process started! PID: {os.getpid()}")
 print("Watch the dashboard CPU gauge spike...")
 
-
 try:
     while True:
         x = 0

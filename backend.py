@@ -72,7 +72,6 @@ def get_system_snapshot():
                 raw_cpu = p_info['cpu_percent'] or 0.0
                 normalized_cpu = round(raw_cpu / CPU_CORES, 1)
 
-
                 procs.append({
                     "pid": p_info['pid'],
                     "name": p_info['name'] or "Unknown",
