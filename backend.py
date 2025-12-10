@@ -119,6 +119,7 @@ app.add_middleware(
 if not os.path.exists("static"):
     os.makedirs("static")
 
+
 @app.websocket("/ws/metrics")
 async def websocket_endpoint(ws: WebSocket):
     await ws.accept()
