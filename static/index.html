@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project PD | SysAdmin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="dashboard-grid">
+        <aside class="sidebar">
+            <div class="brand">
+                <i class="ph-fill ph-circles-three-plus"></i>
+                <span>SysAdmin</span>
+            </div>
+            <nav>
+                <a href="#" id="nav-perf" class="active" onclick="switchTab('perf')">
+                    <i class="ph ph-chart-line-up"></i> Performance
+                </a>
+                <a href="#" id="nav-proc" onclick="switchTab('proc')">
+                    <i class="ph ph-list-dashes"></i> Processes
+                </a>
+            </nav>
+            <div class="status-indicator">
+                <span class="dot"></span> Active
+            </div>
+        </aside>
+
+        <main>
+            <header>
+                <div class="header-stats">
+                    <div class="stat-card">
+                        <span class="label">CPU Usage</span>
+                        <div class="value-group">
+                            <span id="cpu-val" class="highlight">--%</span>
+                            <i class="ph ph-chart-bar" style="color:#2563eb;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Memory</span>
+                        <div class="value-group">
+                            <span id="mem-val" class="highlight" style="color:#10b981;">--%</span>
+                            <i class="ph ph-memory" style="color:#10b981;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Network (KB/s)</span>
+                        <div class="value-group">
+                            <div style="font-size: 0.85rem; font-weight:600; font-family:'JetBrains Mono'">
+                                <span style="color:#8b5cf6">↓ <span id="net-down">0</span></span><br>
+                                <span style="color:#f59e0b">↑ <span id="net-up">0</span></span>
+                            </div>
+                            <i class="ph ph-wifi-high" style="color:#8b5cf6;"></i>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="label">Disk (C:)</span>
+                        <div class="value-group">
+                            <span id="disk-val" class="highlight" style="color:#f43f5e">--%</span>
+                            <i class="ph ph-hard-drives" style="color:#f43f5e;"></i>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div id="view-perf" class="tab-view active-view">
+                <h2 class="view-title">System History</h2>
+                <section class="chart-panel card-panel">
+                    <div class="canvas-container">
+                        <canvas id="sysChart"></canvas>
+                    </div>
+                </section>
+            </div>
+
+            <div id="view-proc" class="tab-view hidden-view">
+                <div class="panel-header">
+                    <h2 class="view-title">Process Manager</h2>
+                    <div class="search-box">
+                        <i class="ph ph-magnifying-glass"></i>
+                        <input type="text" id="search" placeholder="Search PID or Name..." onkeyup="filterTable()">
+                    </div>
+                </div>
+                <section class="process-panel card-panel">
+                    <div class="table-container">
+                        <table id="procTable">
+                            <thead>
+                                <tr>
+                                    <th>PID</th>
+                                    <th>Name</th>
+                                    <th>CPU</th>
+                                    <th>Memory</th>
+                                    <th>Command</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="procBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <aside class="audit-sidebar">
+            <div class="audit-header">
+                <h3><i class="ph ph-clipboard-text"></i> Audit Log</h3>
+                <button id="downloadBtn" onclick="downloadLog()" title="Download Log">
+                    <i class="ph ph-download-simple"></i>
+                </button>
+            </div>
+            <ul id="audit-list">
+                <li class="empty-state" style="color:#94a3b8; font-style:italic; font-size:0.85rem;">No actions recorded yet.</li>
+            </ul>
+        </aside>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
