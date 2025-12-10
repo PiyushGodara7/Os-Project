@@ -86,6 +86,9 @@ def get_system_snapshot():
         return {"system": sys_stats, "processes": procs[:100]}
     except Exception:
         return {"system": {}, "processes": []}
+    
+
+    
 
 async def broadcast_metrics():
     while True:

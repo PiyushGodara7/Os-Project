@@ -8,6 +8,7 @@ function switchTab(tab) {
     const viewPerf = document.getElementById('view-perf');
     const viewProc = document.getElementById('view-proc');
 
+    
     if (tab === 'perf') {
         navPerf.classList.add('active');
         navProc.classList.remove('active');

@@ -10,5 +10,6 @@ try:
         for i in range(5000000):
             x += i*i
         time.sleep(0.1)
+        
 except KeyboardInterrupt:
     print("Stopped.")
