@@ -126,6 +126,7 @@ async def websocket_endpoint(ws: WebSocket):
     try:
         while True:
             await ws.receive_text()
+             
     except WebSocketDisconnect:
         if ws in clients:
             clients.remove(ws)
