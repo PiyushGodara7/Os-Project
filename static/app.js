@@ -4,11 +4,12 @@ const auditList = document.getElementById('audit-list');
 
 function switchTab(tab) {
     const navPerf = document.getElementById('nav-perf');
+    
     const navProc = document.getElementById('nav-proc');
     const viewPerf = document.getElementById('view-perf');
     const viewProc = document.getElementById('view-proc');
 
-    
+
     if (tab === 'perf') {
         navPerf.classList.add('active');
         navProc.classList.remove('active');
